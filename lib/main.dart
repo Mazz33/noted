@@ -59,6 +59,7 @@ class MainMenu extends StatelessWidget {
       ),
       body: ListView(
         padding: const EdgeInsets.all(50),
+        physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
           Container(
               height: 50,
