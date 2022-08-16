@@ -61,17 +61,29 @@ class MainMenu extends StatelessWidget {
         padding: const EdgeInsets.all(50),
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
-          Container(
-              height: 50,
-              child: const Center(child: Text("Write Notes in better way!"))),
-          Container(
+          const SizedBox(
+              height: 200,
+              child: Center(
+                  child: Text(
+                    "Write Notes in Better Way!",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
+                      letterSpacing: 1.5,
+                      decorationStyle: TextDecorationStyle.wavy,
+                    )
+                  )
+              )
+          ),
+          const SizedBox(
               height: 250,
-              child: const Center(
-                  child: const Image(image: AssetImage("images/PepoG.png")))),
+              child: Center(
+                  child: Image(image: AssetImage("images/PepoG.png")))),
           SizedBox(
               height: 100,
               child: ListView(children: <Widget>[
-                Container(
+                SizedBox (
                     height: 50,
                     child: Center(
                       child: ElevatedButton(
@@ -81,7 +93,7 @@ class MainMenu extends StatelessWidget {
                         },
                       ),
                     )),
-                Container(
+                SizedBox (
                     height: 50,
                     child: Center(
                         child: ElevatedButton(
