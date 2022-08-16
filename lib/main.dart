@@ -64,14 +64,31 @@ class MainMenu extends StatelessWidget {
         ],
         centerTitle: true,
       ),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text("My Notes"),
-          onPressed: () {
-            router.loadPage(context, "/Notes");
-          }
-        )
+      body: Column(
+        children: <Widget>[
+          Text("Take Notes In a more Effective Way!!"),
+          Center(
+              child: const Image(image: AssetImage("images/PepoG.png"))
+          ),
+          Center(
+            child: ElevatedButton(
+              child: const Text("My Notes"),
+              onPressed: () {
+                router.loadPage(context, "/Notes");
+              },
+            )
+          ),
+          Center(
+              child: ElevatedButton(
+                child: const Text("My Journal"),
+                onPressed: () {
+                  router.loadPage(context, "/Journal");
+                },
+              )
+          )
+        ]
       ),
+      // backgroundColor: const Color.fromRGBO(4, 4, 5, 1),
     );
   }
 }
