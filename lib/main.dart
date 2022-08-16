@@ -9,21 +9,16 @@ class Noted extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Noted",
-      initialRoute: "/",
-      routes: {
-        "/": (context) => const MainMenu(),
-        "/Notes": (context) => const NotesPage(),
-        "/Journal": (context) => const JournalPage(),
-        "/Settings": (context) => const SettingsPage(),
-      }
-    );
+    return MaterialApp(title: "Noted", initialRoute: "/", routes: {
+      "/": (context) => const MainMenu(),
+      "/Notes": (context) => const NotesPage(),
+      "/Journal": (context) => const JournalPage(),
+      "/Settings": (context) => const SettingsPage(),
+    });
   }
 }
 
 class RoutesManager {
-
   void goBack(BuildContext context) {
     Navigator.pop(context);
   }
@@ -43,17 +38,15 @@ class MainMenu extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home"),
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.account_circle),
-              onPressed: () {
-                router.loadPage(context, "/");
-              },
-              tooltip: "Back To Main Menu",
-            );
-          }
-        ),
+        leading: Builder(builder: (BuildContext context) {
+          return IconButton(
+            icon: const Icon(Icons.account_circle),
+            onPressed: () {
+              router.loadPage(context, "/");
+            },
+            tooltip: "Back To Main Menu",
+          );
+        }),
         backgroundColor: const Color.fromRGBO(0xFF, 0, 0, 1),
         actions: <Widget>[
           IconButton(
@@ -68,46 +61,36 @@ class MainMenu extends StatelessWidget {
         padding: const EdgeInsets.all(50),
         children: <Widget>[
           Container(
-            height: 50,
-            child: const Center(
-              child: Text("Write Notes in better way!")
-            )
-          ),
+              height: 50,
+              child: const Center(child: Text("Write Notes in better way!"))),
           Container(
-            height: 250,
-            child: const Center(
-              child: const Image(image: AssetImage("images/PepoG.png"))
-            )
-          ),
+              height: 250,
+              child: const Center(
+                  child: const Image(image: AssetImage("images/PepoG.png")))),
           SizedBox(
               height: 100,
-              child: ListView(
-            children: <Widget>[
-              Container(
-                height: 50,
-                child: Center(
-                  child: ElevatedButton(
-                    child: const Text("Notes"),
-                    onPressed: () {
-                      router.loadPage(context, "/Notes");
-                    },
-                  ),
-                )
-              ),
-            Container(
-              height: 50,
-              child: Center(
-                child: ElevatedButton(
-                  child: const Text("Journal"),
-                  onPressed: () {
-                    router.loadPage(context, "/Journal");
-                  },
-                )
-              )
-            )
-          ]
-          )
-          )],
+              child: ListView(children: <Widget>[
+                Container(
+                    height: 50,
+                    child: Center(
+                      child: ElevatedButton(
+                        child: const Text("Notes"),
+                        onPressed: () {
+                          router.loadPage(context, "/Notes");
+                        },
+                      ),
+                    )),
+                Container(
+                    height: 50,
+                    child: Center(
+                        child: ElevatedButton(
+                      child: const Text("Journal"),
+                      onPressed: () {
+                        router.loadPage(context, "/Journal");
+                      },
+                    )))
+              ]))
+        ],
       ),
       // backgroundColor: const Color.fromRGBO(4, 4, 5, 1),
     );
@@ -128,10 +111,7 @@ class _NotesPageState extends State<NotesPage> {
         appBar: AppBar(
           title: const Text("My Notes"),
         ),
-        body: const Center(
-            child: Text("My Notes")
-        )
-    );
+        body: const Center(child: Text("My Notes")));
   }
 }
 
@@ -146,13 +126,10 @@ class _JournalPageState extends State<JournalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("My Journal"),
-      ),
-      body: const Center(
-        child: Text("My Journal")
-      )
-    );
+        appBar: AppBar(
+          title: const Text("My Journal"),
+        ),
+        body: const Center(child: Text("My Journal")));
   }
 }
 
@@ -162,9 +139,8 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Settings"),
-      )
-    );
+        appBar: AppBar(
+      title: const Text("Settings"),
+    ));
   }
 }
