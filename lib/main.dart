@@ -85,11 +85,13 @@ class MainMenu extends StatelessWidget {
                       ElevatedButton(
                           onPressed: () {
                             router.loadPage(context, "/Notes");
-                          }, child: const Text("Notes")),
+                          },
+                          child: const Text("Notes")),
                       ElevatedButton(
                           onPressed: () {
                             router.loadPage(context, "/Journal");
-                          }, child: const Text("Journal")),
+                          },
+                          child: const Text("Journal")),
                     ],
                   ))),
         ],
