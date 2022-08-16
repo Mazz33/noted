@@ -64,29 +64,50 @@ class MainMenu extends StatelessWidget {
         ],
         centerTitle: true,
       ),
-      body: Column(
+      body: ListView(
+        padding: const EdgeInsets.all(50),
         children: <Widget>[
-          Text("Take Notes In a more Effective Way!!"),
-          Center(
-              child: const Image(image: AssetImage("images/PepoG.png"))
-          ),
-          Center(
-            child: ElevatedButton(
-              child: const Text("My Notes"),
-              onPressed: () {
-                router.loadPage(context, "/Notes");
-              },
+          Container(
+            height: 50,
+            child: const Center(
+              child: Text("Write Notes in better way!")
             )
           ),
-          Center(
-              child: ElevatedButton(
-                child: const Text("My Journal"),
-                onPressed: () {
-                  router.loadPage(context, "/Journal");
-                },
+          Container(
+            height: 250,
+            child: const Center(
+              child: const Image(image: AssetImage("images/PepoG.png"))
+            )
+          ),
+          SizedBox(
+              height: 100,
+              child: ListView(
+            children: <Widget>[
+              Container(
+                height: 50,
+                child: Center(
+                  child: ElevatedButton(
+                    child: const Text("Notes"),
+                    onPressed: () {
+                      router.loadPage(context, "/Notes");
+                    },
+                  ),
+                )
+              ),
+            Container(
+              height: 50,
+              child: Center(
+                child: ElevatedButton(
+                  child: const Text("Journal"),
+                  onPressed: () {
+                    router.loadPage(context, "/Journal");
+                  },
+                )
               )
+            )
+          ]
           )
-        ]
+          )],
       ),
       // backgroundColor: const Color.fromRGBO(4, 4, 5, 1),
     );
