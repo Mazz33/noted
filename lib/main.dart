@@ -64,48 +64,36 @@ class MainMenu extends StatelessWidget {
           const SizedBox(
               height: 200,
               child: Center(
-                  child: Text(
-                    "Write Notes in Better Way!",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic,
-                      letterSpacing: 1.5,
-                      decorationStyle: TextDecorationStyle.wavy,
-                    )
-                  )
-              )
-          ),
+                  child: Text("Write Notes in Better Way!",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                        letterSpacing: 1.5,
+                        decorationStyle: TextDecorationStyle.wavy,
+                      )))),
           const SizedBox(
               height: 250,
-              child: Center(
-                  child: Image(image: AssetImage("images/PepoG.png")))),
-          SizedBox(
-              height: 100,
-              child: ListView(children: <Widget>[
-                SizedBox (
-                    height: 50,
-                    child: Center(
-                      child: ElevatedButton(
-                        child: const Text("Notes"),
-                        onPressed: () {
-                          router.loadPage(context, "/Notes");
-                        },
-                      ),
-                    )),
-                SizedBox (
-                    height: 50,
-                    child: Center(
-                        child: ElevatedButton(
-                      child: const Text("Journal"),
-                      onPressed: () {
-                        router.loadPage(context, "/Journal");
-                      },
-                    )))
-              ]))
+              child:
+                  Center(child: Image(image: AssetImage("images/PepoG.png")))),
+          Center(
+              child: IntrinsicWidth(
+                  stepWidth: 200,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      ElevatedButton(
+                          onPressed: () {
+                            router.loadPage(context, "/Notes");
+                          }, child: const Text("Notes")),
+                      ElevatedButton(
+                          onPressed: () {
+                            router.loadPage(context, "/Journal");
+                          }, child: const Text("Journal")),
+                    ],
+                  ))),
         ],
       ),
-      // backgroundColor: const Color.fromRGBO(4, 4, 5, 1),
     );
   }
 }
