@@ -59,9 +59,11 @@ class MainMenu extends StatelessWidget {
           const SizedBox(
               height: 250,
               width: double.infinity,
-              child:
-              Center(child: Image(image: AssetImage("images/mainpage_background.jpg")))),
-          const SizedBox( //Empty box to add space between the picture and the options
+              child: Center(
+                  child: Image(
+                      image: AssetImage("images/mainpage_background.jpg")))),
+          const SizedBox(
+            //Empty box to add space between the picture and the options
             height: 100,
             width: double.infinity,
           ),
@@ -81,6 +83,11 @@ class MainMenu extends StatelessWidget {
                             router.loadPage(context, "/Journal");
                           },
                           child: const Text("Journal")),
+                      ElevatedButton(
+                          onPressed: () {
+                            router.loadPage(context, "/Goals");
+                          },
+                          child: const Text("Goals"))
                     ],
                   ))),
         ],
@@ -132,8 +139,8 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Settings"),
-        ));
+      title: const Text("Settings"),
+    ));
   }
 }
 
@@ -149,38 +156,26 @@ class GoalsPage extends StatelessWidget {
         ),
         body: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Center(
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Center(
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
                               builder: (context) => const ViewGoals()));
-                        },
-                        child: const Text(
-                            "My List",
-                            style: TextStyle(
-                                fontSize: 35.0
-                            )
-                        )
-                    )
-                ),
-                Center(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                          "Add Todo",
-                          style: TextStyle(
-                              fontSize: 27.0
-                          )
-                      ),
-                    )
-                )
-              ],
-            )
-        )
-    );
+                    },
+                    child: const Text("My List",
+                        style: TextStyle(fontSize: 35.0)))),
+            Center(
+                child: TextButton(
+              onPressed: () {},
+              child: const Text("Add Todo", style: TextStyle(fontSize: 27.0)),
+            ))
+          ],
+        )));
   }
 }
 
@@ -201,23 +196,22 @@ class _ViewGoalsState extends State<ViewGoals> {
           automaticallyImplyLeading: true,
           centerTitle: true,
           actions: <Widget>[
-            IconButton(icon: const Icon(Icons.add),
-                onPressed: () =>
-                    Navigator.push(context, MaterialPageRoute(
+            IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
                         builder: (context) => const GoalsPage()))),
           ],
-          leading: IconButton(icon: const Icon(Icons.arrow_back),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.pop(context, false),
           ),
-
         ),
-        body:
-        ListView.builder(
+        body: ListView.builder(
             itemCount: keys.length,
             itemBuilder: (BuildContext context, int index) {
               return GoalViewer(userGoals[keys[index]]);
-            }
-        )
-    );
+            }));
   }
 }
