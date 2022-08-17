@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "notes.dart";
 
 RoutesManager router = RoutesManager();
 
