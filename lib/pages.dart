@@ -41,7 +41,7 @@ class MainMenu extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView(
-        padding: const EdgeInsets.all(50),
+        padding: const EdgeInsets.all(10),
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
           const SizedBox(
@@ -57,11 +57,16 @@ class MainMenu extends StatelessWidget {
                       )))),
           const SizedBox(
               height: 250,
+              width: double.infinity,
               child:
-              Center(child: Image(image: AssetImage("images/PepoG.png")))),
+              Center(child: Image(image: AssetImage("images/mainpage_background.jpg")))),
+          const SizedBox( //Empty box to add space between the picture and the options
+            height: 100,
+            width: double.infinity,
+          ),
           Center(
               child: IntrinsicWidth(
-                  stepWidth: 200,
+                  stepWidth: 300,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
