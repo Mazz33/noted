@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "notes.dart";
+import "goals.dart";
 
 RoutesManager router = RoutesManager();
 
@@ -133,5 +134,90 @@ class SettingsPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text("Settings"),
         ));
+  }
+}
+
+class GoalsPage extends StatelessWidget {
+  const GoalsPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text("My Goals"),
+        ),
+        body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Center(
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (context) => const ViewGoals()));
+                        },
+                        child: const Text(
+                            "My List",
+                            style: TextStyle(
+                                fontSize: 35.0
+                            )
+                        )
+                    )
+                ),
+                Center(
+                    child: TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                          "Add Todo",
+                          style: TextStyle(
+                              fontSize: 27.0
+                          )
+                      ),
+                    )
+                )
+              ],
+            )
+        )
+    );
+  }
+}
+
+class ViewGoals extends StatefulWidget {
+  const ViewGoals({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _ViewGoalsState();
+}
+
+class _ViewGoalsState extends State<ViewGoals> {
+  @override
+  Widget build(BuildContext context) {
+    var keys = userGoals.keys.toList();
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("My Goals"),
+          automaticallyImplyLeading: true,
+          centerTitle: true,
+          actions: <Widget>[
+            IconButton(icon: const Icon(Icons.add),
+                onPressed: () =>
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => const GoalsPage()))),
+          ],
+          leading: IconButton(icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context, false),
+          ),
+
+        ),
+        body:
+        ListView.builder(
+            itemCount: keys.length,
+            itemBuilder: (BuildContext context, int index) {
+              return GoalViewer(userGoals[keys[index]]);
+            }
+        )
+    );
   }
 }

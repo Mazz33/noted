@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import "pages.dart";
+import "goals.dart";
 
 void main() {
   runApp(const Noted());
@@ -15,6 +16,7 @@ class Noted extends StatelessWidget {
       "/Notes": (context) => const NotesPage(),
       "/Journal": (context) => const JournalPage(),
       "/Settings": (context) => const SettingsPage(),
+      "/Goals": (context) => const GoalsPage(),
     });
   }
 }
