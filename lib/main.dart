@@ -11,10 +11,6 @@ class Noted extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final testGoal = new Goal("Test", "Test goal");
-    final testGoal2 = new Goal("Test2", "Test goal2");
-    GoalManager().addGoal(testGoal);
-    GoalManager().addGoal(testGoal2);
     return MaterialApp(title: "Noted", initialRoute: "/", routes: {
       "/": (context) => const MainMenu(),
       "/Notes": (context) => const NotesPage(),

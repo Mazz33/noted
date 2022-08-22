@@ -68,7 +68,25 @@ class _NoteViewerState extends State<NoteViewer> {
     return ListTile();
 
   }
+}
 
+class NoteCreator extends StatelessWidget {
+  const NoteCreator({Key? key}): super(key: key);
+
+  static int lastId = 0;
+
+  // Generate and ID for the note
+  int generateId() {
+    return ++lastId;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+
+    );
+  }
 }
 
 class NoteManager {
