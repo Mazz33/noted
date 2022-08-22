@@ -109,6 +109,25 @@ class _NotesPageState extends State<NotesPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("My Notes"),
+          leading: Builder(builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                // Go to create new notes page
+              },
+              tooltip: "Go Back",
+            );
+          }),
+          backgroundColor: const Color.fromRGBO(0xFF, 0, 0, 1),
+          actions: <Widget> [
+            IconButton(
+              icon: const Icon(Icons.settings),
+              tooltip: "Open Settings",
+              onPressed: () {
+                // Go to settings page
+              },
+            )
+          ]
         ),
         body: const Center(child: Text("My Notes")));
   }
