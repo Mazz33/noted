@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 
+var userNotes = {};
+
 // Main Note class
 class Note {
   late String title;
@@ -37,4 +39,28 @@ class Note {
   bool get noteLock {
     return isLocked;
   }
+}
+
+class NoteViewer extends StatefulWidget {
+  final Note currentNote;
+
+  const NoteViewer(this.currentNote, {Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return _NoteViewerState(currentNote);
+  }
+}
+
+class _NoteViewerState extends State<NoteViewer> {
+  Note currentNote;
+
+  _NoteViewerState(this.currentNote);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile();
+
+  }
+
 }
