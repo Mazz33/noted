@@ -113,7 +113,6 @@ class _NotesPageState extends State<NotesPage> {
             return IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
-                // Go to create new notes page
               },
               tooltip: "Go Back",
             );
@@ -121,10 +120,10 @@ class _NotesPageState extends State<NotesPage> {
           backgroundColor: const Color.fromRGBO(0xFF, 0, 0, 1),
           actions: <Widget> [
             IconButton(
-              icon: const Icon(Icons.settings),
-              tooltip: "Open Settings",
+              icon: const Icon(Icons.add),
+              tooltip: "Create a new note",
               onPressed: () {
-                // Go to settings page
+                router.loadPage(context, "/Notes/CreateNote");
               },
             )
           ]
