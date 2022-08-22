@@ -18,7 +18,6 @@ class Noted extends StatelessWidget {
       "/Journal": (context) => const JournalPage(),
       "/Settings": (context) => const SettingsPage(),
       "/Goals": (context) => const GoalsPage(),
-      "/Goals/ViewGoal": (context) => const ViewGoals(),
     });
   }
 }

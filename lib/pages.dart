@@ -180,49 +180,14 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
-class GoalsPage extends StatelessWidget {
+class GoalsPage extends StatefulWidget {
   const GoalsPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text("My Goals"),
-        ),
-        body: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Center(
-                child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ViewGoals()));
-                    },
-                    child: const Text("My List",
-                        style: TextStyle(fontSize: 35.0)))),
-            Center(
-                child: TextButton(
-              onPressed: () {},
-              child: const Text("Add Todo", style: TextStyle(fontSize: 27.0)),
-            ))
-          ],
-        )));
-  }
+  State<StatefulWidget> createState() => _GoalsPageState();
 }
 
-class ViewGoals extends StatefulWidget {
-  const ViewGoals({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _ViewGoalsState();
-}
-
-class _ViewGoalsState extends State<ViewGoals> {
+class _GoalsPageState extends State<GoalsPage> {
   @override
   Widget build(BuildContext context) {
     var keys = userGoals.keys.toList();
@@ -234,10 +199,9 @@ class _ViewGoalsState extends State<ViewGoals> {
           actions: <Widget>[
             IconButton(
                 icon: const Icon(Icons.add),
-                onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const GoalsPage()))),
+                // TODO go to create goal page
+                onPressed: () {},
+            ),
           ],
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
