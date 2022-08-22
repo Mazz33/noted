@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import "pages.dart";
-import "goals.dart";
 
 void main() {
   runApp(const Noted());

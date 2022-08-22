@@ -65,7 +65,7 @@ class _NoteViewerState extends State<NoteViewer> {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile();
+    return const ListTile();
 
   }
 }
@@ -88,7 +88,7 @@ class NoteCreator extends StatelessWidget {
     * this needs to return a ready widget class
     * which needs to be a new note page where user can write or draw with pen
      */
-    return Scaffold(
+    return const Scaffold(
     );
   }
 }
