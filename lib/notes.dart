@@ -64,3 +64,19 @@ class _NoteViewerState extends State<NoteViewer> {
   }
 
 }
+
+class NoteManager {
+  void addNote(Note newNote) {
+    String title = newNote.title;
+    if (!userNotes.containsKey(title)) {
+      userNotes[title] = newNote;
+    }
+  }
+
+  void deleteNote(Note delNote) {
+    String title = delNote.title;
+    if (userNotes.containsKey(title)) {
+      userNotes.remove(title);
+    }
+  }
+}
