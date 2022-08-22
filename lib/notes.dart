@@ -6,10 +6,11 @@ var userNotes = {};
 class Note {
   late String title;
   late bool isLocked;
+  late final int id;
 
-  Note.titledNote(this.title);
+  Note.titledNote(this.title, this.id);
 
-  Note() {
+  Note(this.id) {
     title = "Untitled";
   }
 
@@ -39,6 +40,11 @@ class Note {
   bool get noteLock {
     return isLocked;
   }
+
+  int get noteId {
+    return id;
+  }
+
 }
 
 class NoteViewer extends StatefulWidget {
@@ -67,16 +73,16 @@ class _NoteViewerState extends State<NoteViewer> {
 
 class NoteManager {
   void addNote(Note newNote) {
-    String title = newNote.title;
-    if (!userNotes.containsKey(title)) {
-      userNotes[title] = newNote;
+    final int id = newNote.id;
+    if (!userNotes.containsKey(id)) {
+      userNotes[id] = newNote;
     }
   }
 
   void deleteNote(Note delNote) {
-    String title = delNote.title;
-    if (userNotes.containsKey(title)) {
-      userNotes.remove(title);
+    final int id = delNote.id;
+    if (userNotes.containsKey(id)) {
+      userNotes.remove(id);
     }
   }
 }
