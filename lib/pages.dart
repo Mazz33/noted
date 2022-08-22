@@ -106,35 +106,39 @@ class NotesPage extends StatefulWidget {
 class _NotesPageState extends State<NotesPage> {
   @override
   Widget build(BuildContext context) {
+    var keys = userNotes.keys.toList();
     return Scaffold(
         appBar: AppBar(
-          title: const Text("My Notes"),
-          leading: Builder(builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                router.goBack(context);
-              },
-              tooltip: "Go Back",
-            );
-          }),
-          backgroundColor: const Color.fromRGBO(0xFF, 0, 0, 1),
-          actions: <Widget> [
-            IconButton(
-              icon: const Icon(Icons.add),
-              tooltip: "Create a new note",
-              onPressed: () {
-                router.loadPage(context, "/Notes/CreateNote");
-              },
-            )
-          ]
-        ),
-        body: const Center(child: Text("My Notes")));
+            title: const Text("My Notes"),
+            leading: Builder(builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  router.goBack(context);
+                },
+                tooltip: "Go Back",
+              );
+            }),
+            backgroundColor: const Color.fromRGBO(0xFF, 0, 0, 1),
+            actions: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.add),
+                tooltip: "Create a new note",
+                onPressed: () {
+                  router.loadPage(context, "/Notes/CreateNote");
+                },
+              )
+            ]),
+        body: ListView.builder(
+            itemCount: keys.length,
+            itemBuilder: (BuildContext context, int index) {
+              return NoteViewer(userNotes[keys[index]]);
+            }));
   }
 }
 
 class CreateNotePage extends StatelessWidget {
-  const CreateNotePage({Key? key}) : super (key: key);
+  const CreateNotePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -224,7 +228,7 @@ class _ViewGoalsState extends State<ViewGoals> {
     var keys = userGoals.keys.toList();
     return Scaffold(
         appBar: AppBar(
-          title: const Text("My Goals"),
+          title: const Text("View Goals"),
           automaticallyImplyLeading: true,
           centerTitle: true,
           actions: <Widget>[
