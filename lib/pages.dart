@@ -133,6 +133,19 @@ class _NotesPageState extends State<NotesPage> {
   }
 }
 
+class CreateNotePage extends StatelessWidget {
+  const CreateNotePage({Key? key}) : super (key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Create Note"),
+      ),
+    );
+  }
+}
+
 class JournalPage extends StatefulWidget {
   const JournalPage({Key? key}) : super(key: key);
 

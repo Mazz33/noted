@@ -14,6 +14,7 @@ class Noted extends StatelessWidget {
     return MaterialApp(title: "Noted", initialRoute: "/", routes: {
       "/": (context) => const MainMenu(),
       "/Notes": (context) => const NotesPage(),
+      "/Notes/CreateNote": (context) => const CreateNotePage(),
       "/Journal": (context) => const JournalPage(),
       "/Settings": (context) => const SettingsPage(),
       "/Goals": (context) => const GoalsPage(),
