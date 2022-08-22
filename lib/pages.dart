@@ -113,6 +113,7 @@ class _NotesPageState extends State<NotesPage> {
             return IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
+                router.goBack(context);
               },
               tooltip: "Go Back",
             );
