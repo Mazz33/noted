@@ -83,8 +83,12 @@ class NoteCreator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    /*
+    * TODO
+    * this needs to return a ready widget class
+    * which needs to be a new note page where user can write or draw with pen
+     */
     return Scaffold(
-
     );
   }
 }
