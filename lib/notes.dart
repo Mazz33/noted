@@ -1,50 +1,81 @@
+import 'dart:convert';
+
 import "package:flutter/material.dart";
 
 var userNotes = {};
 
 // Main Note class
 class Note {
-  late String title;
-  late bool isLocked;
+  late String title, content;
+  late bool isLocked, isArchived;
   late final int id;
+  late DateTime dateCreated, dateLastEdited;
 
-  Note.titledNote(this.title, this.id);
+  Note.titledNote(this.title, this.id) {
+    isLocked = false;
+    isArchived = false;
+    dateCreated = DateTime.now();
+    dateLastEdited = DateTime.now();
+  }
 
   Note(this.id) {
     title = "Untitled";
+    isLocked = false;
+    isArchived = false;
+    dateCreated = DateTime.now();
+    dateLastEdited = DateTime.now();
   }
+
+  // Get the parameters of the note as map object
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "title": utf8.encode(title),
+        "content": utf8.encode(content),
+        "dateCreated": getEpochSeconds(dateCreated),
+        "dateLastEdited": getEpochSeconds(dateLastEdited),
+        "isLocked": isLocked,
+        "isArchived": isArchived
+      };
+
+  @override
+  String toString() =>
+      "Title: $title\nDate Created: ${dateCreated.toString()}\nArchived: ${isArchived ? "Yes" : "No"}";
+
+  int getEpochSeconds(DateTime dt) => dt.millisecondsSinceEpoch ~/ 1000;
 
   // Temp locking/unlocking function. No actual encryption yet.
-  void lockNote() {
-    if (!isLocked) {
-      isLocked = true;
-    }
-  }
+  void lockNote() => isLocked = true;
 
-  void unlockNote() {
-    if (isLocked) {
-      isLocked = false;
-    }
-  }
+  void unlockNote() => isLocked = false;
 
-  set noteTitle(String title) {
-    this.title = title;
-  }
-  String get noteTitle {
-    return title;
-  }
+  void archiveNote() => isArchived = true;
 
-  set noteLock(bool lock) {
-    isLocked = lock;
-  }
-  bool get noteLock {
-    return isLocked;
-  }
+  void unarchiveNote() => isArchived = false;
 
-  int get noteId {
-    return id;
-  }
+  // Setters/Getters
+  int get noteId => id;
 
+  set noteTitle(String title) => this.title = title;
+
+  String get noteTitle => title;
+
+  set noteContent(String content) => this.content = content;
+
+  String get noteContent => content;
+
+  DateTime get noteDateCreated => dateCreated;
+
+  set noteDateLastEdited(DateTime dt) => dateLastEdited = dt;
+
+  DateTime get noteDateLastEdited => dateLastEdited;
+
+  set noteLock(bool lock) => isLocked = lock;
+
+  bool get noteLock => isLocked;
+
+  set noteArchive(bool isArchived) => this.isArchived = isArchived;
+
+  bool get noteArchive => isArchived;
 }
 
 class NoteViewer extends StatefulWidget {
@@ -66,12 +97,11 @@ class _NoteViewerState extends State<NoteViewer> {
   @override
   Widget build(BuildContext context) {
     return const ListTile();
-
   }
 }
 
 class NoteCreator extends StatelessWidget {
-  const NoteCreator({Key? key}): super(key: key);
+  const NoteCreator({Key? key}) : super(key: key);
 
   static int lastId = 0;
 
@@ -82,14 +112,12 @@ class NoteCreator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     /*
     * TODO
     * this needs to return a ready widget class
     * which needs to be a new note page where user can write or draw with pen
      */
-    return const Scaffold(
-    );
+    return const Scaffold();
   }
 }
 
