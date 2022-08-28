@@ -85,14 +85,12 @@ class NoteViewer extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _NoteViewerState(currentNote);
+    return _NoteViewerState();
   }
 }
 
 class _NoteViewerState extends State<NoteViewer> {
-  Note currentNote;
-
-  _NoteViewerState(this.currentNote);
+  _NoteViewerState();
 
   @override
   Widget build(BuildContext context) {

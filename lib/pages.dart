@@ -110,6 +110,8 @@ class _NotesPageState extends State<NotesPage> {
     return Scaffold(
         appBar: AppBar(
             title: const Text("My Notes"),
+            elevation: 1,
+            centerTitle: true,
             leading: Builder(builder: (BuildContext context) {
               return IconButton(
                 icon: const Icon(Icons.arrow_back),
@@ -129,11 +131,16 @@ class _NotesPageState extends State<NotesPage> {
                 },
               )
             ]),
-        body: ListView.builder(
-            itemCount: keys.length,
-            itemBuilder: (BuildContext context, int index) {
-              return NoteViewer(userNotes[keys[index]]);
-            }));
+        body: SafeArea(
+          right: true,
+          left: true,
+          top: true,
+          bottom: true,
+          child: ListView.builder(
+              itemCount: keys.length,
+              itemBuilder: (BuildContext context, int index) =>
+                  NoteViewer(userNotes[keys[index]])),
+        ));
   }
 }
 
@@ -198,9 +205,9 @@ class _GoalsPageState extends State<GoalsPage> {
           centerTitle: true,
           actions: <Widget>[
             IconButton(
-                icon: const Icon(Icons.add),
-                // TODO go to create goal page
-                onPressed: () {},
+              icon: const Icon(Icons.add),
+              // TODO go to create goal page
+              onPressed: () {},
             ),
           ],
           leading: IconButton(
