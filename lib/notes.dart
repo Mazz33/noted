@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import "package:flutter/material.dart";
+import 'package:noted/pages.dart';
 
 var userNotes = {};
 
@@ -91,8 +92,8 @@ class _NoteViewerState extends State<NoteViewer> {
   final _titleController = TextEditingController();
   final _contentController = TextEditingController();
   final _titleFocus = FocusNode();
-  final _contentFocus = FocusNode();
-  bool _isNewNote = false;
+  // final _contentFocus = FocusNode();
+  // bool _isNewNote = false;
 
   @override
   void initState() {
@@ -100,12 +101,40 @@ class _NoteViewerState extends State<NoteViewer> {
     _contentController.text = widget.currentNote.content;
 
     // If we pass id as -1 then this is a newly created note.
-    if (widget.currentNote.id == -1) _isNewNote = true;
+    // if (widget.currentNote.id == -1) _isNewNote = true;
+
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const ListTile();
+    if (widget.currentNote.title.isEmpty) {
+      FocusScope.of(context).requestFocus(_titleFocus);
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Note Editor"),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+                icon: const Icon(Icons.arrow_back),
+                tooltip: "Go Back",
+                onPressed: () => router.goBack(context),
+            );
+          },
+        ),
+        backgroundColor: const Color.fromRGBO(0xFF, 0, 0, 1),
+        actions: <Widget> [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            tooltip: "Note Settings",
+            // TODO Create /Notes/CreateNote/Settings
+            onPressed: () => router.loadPage(context, "/Notes/CreateNote/Settings"),
+          )
+        ],
+      ),
+    );
   }
 }
 

@@ -115,10 +115,10 @@ class _NotesPageState extends State<NotesPage> {
             leading: Builder(builder: (BuildContext context) {
               return IconButton(
                 icon: const Icon(Icons.arrow_back),
+                tooltip: "Go Back",
                 onPressed: () {
                   router.goBack(context);
                 },
-                tooltip: "Go Back",
               );
             }),
             backgroundColor: const Color.fromRGBO(0xFF, 0, 0, 1),
