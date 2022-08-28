@@ -84,13 +84,24 @@ class NoteViewer extends StatefulWidget {
   const NoteViewer(this.currentNote, {Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return _NoteViewerState();
-  }
+  State<StatefulWidget> createState() => _NoteViewerState();
 }
 
 class _NoteViewerState extends State<NoteViewer> {
-  _NoteViewerState();
+  final _titleController = TextEditingController();
+  final _contentController = TextEditingController();
+  final _titleFocus = FocusNode();
+  final _contentFocus = FocusNode();
+  bool _isNewNote = false;
+
+  @override
+  void initState() {
+    _titleController.text = widget.currentNote.title;
+    _contentController.text = widget.currentNote.content;
+
+    // If we pass id as -1 then this is a newly created note.
+    if (widget.currentNote.id == -1) _isNewNote = true;
+  }
 
   @override
   Widget build(BuildContext context) {
