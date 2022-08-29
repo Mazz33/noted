@@ -1,7 +1,11 @@
-import 'package:flutter/material.dart';
-import "pages.dart";
+import "dart:async";
 
-void main() {
+import 'package:flutter/material.dart';
+
+import "package:noted/pages.dart";
+import "database_handlers/sqlite_handler.dart";
+
+void main() async {
   runApp(const Noted());
 }
 
