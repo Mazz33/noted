@@ -6,33 +6,66 @@ import "package:sqflite/sqflite.dart";
 
 import "package:noted/notes.dart";
 
-class NoteHandler {
-  late String title, content;
-  late bool isLocked, isArchived;
-  late int id;
-  late DateTime dateCreated, dateLastEdited;
+class NoteDatabaseHandler {
+  final databaseName = "notes.db";
+  final tableName = "notes";
 
-  NoteHandler(Note nt) {
-    id = nt.id;
-    title = nt.title;
-    content = nt.content;
-    isLocked = nt.isLocked;
-    isArchived = nt.isArchived;
-    dateCreated = nt.dateCreated;
-    dateLastEdited = nt.dateLastEdited;
+  static late Database _database;
+
+  final fieldMap = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "title": "BLOB",
+    "content": "BLOB",
+    "dateCreated": "INTEGER",
+    "dateLastEdited": "INTEGER",
+    "isArchived": "INTEGER",
+    "isLocked": "INTEGER"
+  };
+
+  NoteDatabaseHandler() {
+    _database = initDatabase();
   }
 
-  void initializeDatabase() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  initDatabase() async {
+    String dbPath = join(await getDatabasesPath(), databaseName);
+    Database dbConnection = await openDatabase(dbPath, version: 1,
+        onCreate: (Database db, int version) async {
+      await db.execute(_buildCreateQuery());
+    });
 
-    final database = openDatabase(join(await getDatabasesPath(), "notes.db"),
-        onCreate: (db, version) => db.execute(
-            "CREATE TABLE Notes(id INTEGER PRIMARY KEY, title TEXT, content TEXT"),
-        version: 1);
+    await dbConnection.execute(_buildCreateQuery());
+    return dbConnection;
   }
 
-  Future<void> insertNote(Note nt, database) async {
-    final db = await database;
+  // Generate the CREATE TABLE query from the fields in fieldMap
+  String _buildCreateQuery() {
+    String query = "CREATE TABLE IF NOT EXISTS ";
+    query += "$tableName(";
+    fieldMap.forEach((key, value) {
+      query += "$key $value";
+    });
+    query = query.substring(0, query.length - 1);
+    query += ")";
+
+    return query;
+  }
+
+  Future<Database> get database async => _database;
+
+  Future<String> databasePath() async {
+    String path = await getDatabasesPath();
+    return path;
+  }
+
+  Future<List<Note>> getAllNotes() async {
+    final db = _database;
+    final List<Map<String, dynamic>> maps = await db.query("Notes");
+
+    return List.generate(maps.length, (index) => Note(maps[index]["id"]));
+  }
+
+  Future<void> insertNote(Note nt) async {
+    final db = _database;
 
     await db.insert(
       "Notes",
@@ -41,15 +74,16 @@ class NoteHandler {
     );
   }
 
-  Future<List<Note>> getAllNotes(database) async {
-    final db = await database;
-    final List<Map<String, dynamic>> maps = await db.query("Notes");
-
-    return List.generate(maps.length, (index) => Note(maps[index]["id"]));
+  Future<void> copyNote(Note nt) async {
+    try {
+      insertNote(nt);
+    } catch (e) {
+      print("Error inserting ${nt.id}\nError is: $e");
+    }
   }
 
-  Future<void> updateNote(Note nt, database) async {
-    final db = await database;
+  Future<void> updateNote(Note nt) async {
+    final db = _database;
 
     await db.update(
       "Notes",
@@ -59,8 +93,8 @@ class NoteHandler {
     );
   }
 
-  Future<void> deleteNote(int id, database) async {
-    final db = await database;
+  Future<void> deleteNote(int id) async {
+    final db = _database;
 
     await db.delete(
       "Notes",
