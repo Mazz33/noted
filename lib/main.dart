@@ -2,7 +2,7 @@ import "dart:async";
 
 import 'package:flutter/material.dart';
 
-import "package:noted/pages.dart";
+import 'package:noted/pages.dart';
 import "database_handlers/notes_sqlite_handler.dart";
 
 void main() async {

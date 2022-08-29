@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
-import "notes.dart";
-import "goals.dart";
+import 'internal/notes.dart';
+import 'internal/goals.dart';
 
 RoutesManager router = RoutesManager();
 

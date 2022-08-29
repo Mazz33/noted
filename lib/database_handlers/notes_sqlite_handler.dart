@@ -3,7 +3,7 @@ import "dart:async";
 import "package:path/path.dart";
 import "package:sqflite/sqflite.dart";
 
-import "package:noted/notes.dart";
+import 'package:noted/internal/notes.dart';
 
 class NoteDatabaseHandler {
   final databaseName = "notes.db";
