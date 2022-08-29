@@ -1,7 +1,8 @@
-import 'dart:convert';
+import "dart:convert";
 
 import "package:flutter/material.dart";
-import 'package:noted/pages.dart';
+
+import "package:noted/pages/router.dart";
 
 var userNotes = {};
 

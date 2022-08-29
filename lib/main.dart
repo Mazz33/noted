@@ -1,9 +1,6 @@
-import "dart:async";
+import "package:flutter/material.dart";
 
-import 'package:flutter/material.dart';
-
-import 'package:noted/pages.dart';
-import "database_handlers/notes_sqlite_handler.dart";
+import "package:noted/pages/router.dart";
 
 void main() async {
   runApp(const Noted());
@@ -23,7 +20,7 @@ class Noted extends StatelessWidget {
           "/Notes": (context) => const NotesPage(),
           "/Notes/CreateNote": (context) => const CreateNotePage(),
           "/Journal": (context) => const JournalPage(),
-          "/Settings": (context) => const SettingsPage(),
+          "/Settings": (context) => const MainSettingsPage(),
           "/Goals": (context) => const GoalsPage(),
         });
   }
