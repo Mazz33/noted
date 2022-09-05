@@ -86,7 +86,7 @@ class NoteViewer extends StatefulWidget {
   const NoteViewer(this.currentNote, {Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _NoteViewerState();
+  State<NoteViewer> createState() => _NoteViewerState();
 }
 
 class _NoteViewerState extends State<NoteViewer> {
