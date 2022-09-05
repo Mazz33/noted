@@ -51,14 +51,56 @@ class _NotesPageState extends State<NotesPage> {
   }
 }
 
-class CreateNotePage extends StatelessWidget {
+class CreateNotePage extends StatefulWidget {
   const CreateNotePage({Key? key}) : super(key: key);
+
+  @override
+  State<CreateNotePage> createState() => _CreateNotePageState();
+}
+
+class _CreateNotePageState extends State<CreateNotePage> {
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Create Note"),
+        title: const Text("Create New Note"),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.arrow_back),
+              tooltip: "Go Back",
+              onPressed: () => router.goBack(context)
+            );
+          },
+        ),
+        backgroundColor: const Color.fromRGBO(0xFF, 0, 0, 1),
+      ),
+      body: Form(
+        key: _formKey,
+        child: Column(
+          children: <Widget> [
+            TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Please enter something";
+                }
+                return null;
+              }
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if(_formKey.currentState!.validate()) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Processing Data")),
+                  );
+                }
+              },
+              child: const Text("Submit"),
+            )
+          ]
+        ),
       ),
     );
   }
