@@ -33,14 +33,18 @@ class GoalViewer extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _GoalViewerState(currentGoal);
+    return _GoalViewerState();
   }
 }
 
 class _GoalViewerState extends State<GoalViewer> {
-  Goal currentGoal;
+  late Goal currentGoal;
 
-  _GoalViewerState(this.currentGoal);
+  @override
+  void initState() {
+    currentGoal = widget.currentGoal;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

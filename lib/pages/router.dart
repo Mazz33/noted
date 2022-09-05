@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "../internal/goals.dart";
 
 export "homepage.dart";
 export "notes_pages.dart";
